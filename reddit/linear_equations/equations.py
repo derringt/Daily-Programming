@@ -8,14 +8,6 @@ import numpy as np
 def solve(a1=0, b1=0, a2=0, b2=0):
     y = ((b2*a1)-(a2*b1))/(a1-a2)
     x = (y-b1)/a1
-    if x.is_integer():
-        x=int(x)
-    if y.is_integer():
-        y=int(y)
-    if type(x) is float or type(y) is float:
-        #Round to ten-thousandths place per spec
-        x = round(x, 4)
-        y = round(y, 4)
     return [x,y]
 
 def graph(a1, b1, a2, b2, x, y):
@@ -43,4 +35,4 @@ for x in xrange(2):
 
 x,y = solve(eqs[0][0], eqs[0][1], eqs[1][0], eqs[1][1])
 graph(eqs[0][0], eqs[0][1], eqs[1][0], eqs[1][1], x, y)
-print "(%s, %s)" % (x, y)
+print "(%g, %g)" % (x, y)

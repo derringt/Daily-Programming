@@ -2,12 +2,12 @@ import re
 
 class Version:
 
-    def __init__(self,major,minor,patch):
-        self.major = int(major)
-        self.minor = int(minor)
-        self.patch = int(patch)
-        self.label = ''
-        self.build = ''
+    def __init__(self,major,minor,patch,label='',build=''):
+        self.major = major
+        self.minor = minor
+        self.patch = patch
+        self.label = label
+        self.build = build
 
     @classmethod
     def fromstring(cls, versionstring):
@@ -20,7 +20,7 @@ class Version:
         return new
 
     def __str__(self):
-        value = '.'.join([`self.major`, `self.minor`, `self.patch`])
+        value = '.'.join([self.major, self.minor, self.patch])
         if self.label:
             value += '-' + self.label
         if self.build:
@@ -35,11 +35,11 @@ class Version:
 
     def __lt__(self, other):
         if not other.major == self.major:
-            return self.major < other.major
+            return int(self.major) < int(other.major)
         elif not other.minor == self.minor:
-            return self.minor < other.minor
+            return int(self.minor) < int(other.minor)
         elif not other.patch == self.patch:
-            return self.patch < other.patch
+            return int(self.patch) < int(other.patch)
         elif self.label and not other.label:
             return True
         else:

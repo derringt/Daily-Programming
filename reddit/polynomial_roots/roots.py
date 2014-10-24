@@ -20,8 +20,10 @@ def split_eq(eq):
         elem = re.split(b, elem)
         if len(elem) == 1:
             elem.append(None)
-        if elem[0]:
+        try:
             cof = int(elem[0])
+        except:
+            cof = int(elem[0]+'1')
         if elem[1]:
             exp = int(elem[1])
         terms.append((cof,exp))
